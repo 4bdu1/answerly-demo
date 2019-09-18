@@ -1,5 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import CreateView, DetailView
+from django.views.generic import CreateView, DetailView, DayArchiveView
 
 from qanda.forms import QuestionForm, AnswerForm, AnswerAcceptanceForm
 from qanda.models import Question
@@ -78,3 +78,22 @@ class CreateAnswerView(LoginRequiredMixin,CreateView):
 
     def get_question(self):
         return Question.objects.get(pk=self.kwargs['pk'])
+
+
+class UpdateAnswerAcceptance(LoginRequiredMixin, UpdateView):
+    form_class = AnswerAcceptanceForm
+    queryset = Answer.objects.all()
+
+    def get_success_url(self):
+        return self.object.question.get_absolute_url()
+    
+    def form_invalid(self,form):
+        return HttpResponseRedirect(
+            redirect_to=self.object.question.get_absolute_url()
+        )
+
+class DailyQuestionList(DayArchiveView):
+    queryset = Question.objects.all()
+    date_field = 'created'
+    month_format = '%m'
+    allow_empty = True
