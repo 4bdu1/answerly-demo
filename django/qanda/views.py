@@ -1,5 +1,6 @@
 from django.utils import timezone
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls.base import reverse
 from django.views.generic import (
     CreateView, 
     DetailView,
@@ -108,7 +109,7 @@ class TodaysQuestionList(RedirectView):
     def get_redirect_url(self, *args, **kwargs):
         today = timezone.now()
         return reverse(
-            'questions:daily_questions',
+            'qanda:daily_questions',
             kwargs={
                 'day': today.day,
                 'month': today.month,

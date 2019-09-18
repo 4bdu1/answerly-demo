@@ -4,6 +4,7 @@ from qanda import views
 
 app_name = 'qanda'
 urlpatterns = [
+    path('',views.TodaysQuestionList.as_view(),name='index'),
     path('ask', views.AskQuestionView.as_view(), name="ask"),
     path('daily/<int:year>/<int:month>/<int:day>/', views.DailyQuestionList.as_view(),name='daily_questions'),
     path("a/<int:pk>/accept",views.UpdateAnswerAcceptance.as_view(), name="update_answer_acceptance"), 

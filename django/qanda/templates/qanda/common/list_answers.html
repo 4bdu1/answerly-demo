@@ -9,7 +9,7 @@
                     <span class="badge badge-pill badge-success">Accepted</span>
                 {% endif %}
                 {% if answer.accepted and reject_form %}
-                    <form action="{% url 'qanda:update_answer_acceptance' pl=answer.id %}" method="post">
+                    <form action="{% url 'qanda:update_answer_acceptance' pk=answer.id %}" method="post">
                     {% csrf_token %}
                     {{ reject_form }}
 
