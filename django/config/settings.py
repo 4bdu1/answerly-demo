@@ -144,3 +144,9 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 LOGIN_URL = 'user:login'
 LOGIN_REDIRECT_URL = 'qanda:index'
 LOGOUT_REDIRECT_URL = 'qanda:index'
+
+ES_INDEX = 'answerly'
+ES_HOST = 'localhost'
+ES_PORT = '9200'
+
+

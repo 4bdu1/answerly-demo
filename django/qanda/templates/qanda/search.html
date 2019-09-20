@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load markdownify %}
+
+{% block body %}
+<h2>Search</h2>
+<form class="form-inline" method="post">
+    <input type="search" class="form-control mr-2" placeholder="Search" name="q" value="{{ query }}">
+    <button class="btn btn-primary" type="submit">Search</button>
+</form>
+
+
+{% endblock body %}
